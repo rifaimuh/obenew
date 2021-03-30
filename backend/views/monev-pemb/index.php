@@ -2,7 +2,13 @@
 
 use backend\models\CapaianMahasiswa;
 use backend\models\FileUpload;
+use backend\models\Rps;
 use backend\models\Krs;
+use backend\models\Bap;
+use backend\models\Presensi;
+use backend\models\SoalUjian;
+use backend\models\Nilai;
+use backend\models\Evaluasi;
 use backend\models\RefCpmk;
 use yii\helpers\Html;
 // use yii\grid\GridView;
@@ -89,135 +95,135 @@ $this->params['breadcrumbs'][] = $this->title;
                     'visible'  => !Yii::$app->assign->is(["dosen", "admin dosen"]),
                     'buttons'  => [
                         'RPS' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (Rps::findOne(['id_mata_kuliah_tayang' => $model->id])) {
+                                $rps = Html::a(
                                     '<span> RPS</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/rps', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $rps = Html::a(
                                     '<i> RPS</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/rps', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$rps}
                             </div>";
                         },
 						 'Presensi' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (Presensi::findOne(['id_mata_kuliah_tayang' => $model->id])) {
+                                $presensi = Html::a(
                                     '<span> Presensi</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/presensi', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $presensi = Html::a(
                                     '<i> Presensi</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/presensi', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$presensi}
                             </div>";
                         },
 						 'BAP' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (Bap::findOne(['id' => $model->id])) {
+                                $bap = Html::a(
                                     '<span> BAP</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $bap = Html::a(
                                     '<i> BAP</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$bap}
                             </div>";
                         },
 						  'Ujian' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (SoalUjian::findOne(['id' => $model->id])) {
+                                $soalujian = Html::a(
                                     '<span> Soal Ujian</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/soal-ujian', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $soalujian = Html::a(
                                     '<i> Soal Ujian</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/soal-ujian', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$soalujian}
                             </div>";
                         },
 						 'Nilai' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (Nilai::findOne(['id' => $model->id])) {
+                                $nilai = Html::a(
                                     '<span> Nilai</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/nilai', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $nilai = Html::a(
                                     '<i> Nilai</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/nilai', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$nilai}
                             </div>";
                         },
 						 'Evaluasi' => function ($url, $model, $key) {
-                            if (Krs::findOne(['id_mata_kuliah_tayang' => $model->id])) {
-                                $krs = Html::a(
+                            if (Evaluasi::findOne(['id' => $model->id])) {
+                                $evaluasi = Html::a(
                                     '<span> Evaluasi</span>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/evaluasi', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
-                                $krs = Html::a(
+                                $evaluasi = Html::a(
                                     '<i> Evaluasi</i>',
-                                    ['/krs', 'jk' => $model->id],
+                                    ['/evaluasi', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
                                 );
                             }
                             return "<div class='btn-group'>
-                                {$krs}
+                                {$evaluasi}
                             </div>";
                         },
 						 'Portofolio' => function ($url, $model, $key) {
