@@ -7,11 +7,13 @@ use yii\bootstrap\ActiveForm;
 use kartik\widgets\FileInput;
 use kartik\widgets\SwitchInput;
 
+
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\searchs\RefKelas */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Presensi';
+$this->title = 'Berita Acara Perkuliahan';
 $this->params['breadcrumbs'][] = $this->title;
 $jk = Yii::$app->getRequest()->getQueryParam('jk');
 $url = Url::to(['', 'update' => $update, 'jk' => $jk]);
@@ -22,7 +24,7 @@ $urlOf = Url::to(['', 'update' => 0, $update, 'jk' => $jk]);
 
 <div class="import-nilai-index panel panel-default">
     <div class="panel-heading">
-        <h1 class="panel-title"><strong> Presensi Kehadiran</strong></h1>
+        <h1 class="panel-title"><strong> Berita Acara Perkuliahan</strong></h1>
     </div>
 
     <div class="panel-body">
@@ -32,8 +34,8 @@ $urlOf = Url::to(['', 'update' => 0, $update, 'jk' => $jk]);
                  'role' => 'modal-remote',
             ])*/ ?>
             <?php
-            if (FileUpload::findOne(['id_mata_kuliah_tayang' => $jk, 'jenis' => 'krs'])) {
-                echo Html::a('<i class="fa fa-eye"></i> Lihat File Upload', ['/krs/krs-upload', 'jk' => $jk], [
+            if (FileUpload::findOne(['id_mata_kuliah_tayang' => $jk ])) {
+                echo Html::a('<i class="fa fa-eye"></i> Lihat File Upload', ['/upload/file_bap', 'jk' => $jk], [
                     'class' => 'btn btn-primary btn-flat',
                 ]);
             }
@@ -68,24 +70,11 @@ $urlOf = Url::to(['', 'update' => 0, $update, 'jk' => $jk]);
                 'enctype' => 'multipart/form-data',
             ]
         ]) ?>
-        <?php echo $form->field($model, 'file')->widget(FileInput::classname(), [
-            'pluginOptions' => [
-                'showRemove' => true,
-                'showPreview' => true,
-                'uploadLabel' => 'Import',
-            ],
-            'options' => [
-                'accept' => '.pdf',
-            ]
-        ]) ?>
-        <?= Html::button(
-            'Back',
-            array(
-                'name' => 'btnBack',
-                'class' => 'btn btn-danger',
-                'onclick' => "history.go(-1)",
-            )
-        ); ?>
+        
+		<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])?>
+		<?= $form->field($model, 'file')->fileInput() ?>
+			<button>Submit</button>
+		<?php ActiveForm::end() ?>
         <?php ActiveForm::end() ?>
     </div>
 </div>

@@ -129,7 +129,7 @@ $this->registerCss($css);
                 </td>
                 <td rowspan="2">
                     <div style="text-align: center;">
-                        <p style="font-size:14px; ">Nomor: /UN27.8/PP/2020</p>
+                        <p style="font-size:14px; ">Nomor:                  /UN27.8/PP/2020</p>
                         <i style="font-size:11px;color:grey">Number</i>
                     </div>
                 </td>

@@ -10,10 +10,10 @@ use kartik\widgets\Select2;
 ?>
 
 <div class="ref-mata-kuliah-form">
-
+<?php $jk = Yii::$app->getRequest()->getQueryParam('jk');?>
     <?php $form = ActiveForm::begin(); ?>
 	<?php
-    $jenis_data = [ 'Soal UTS' , 'Soal UAS' , 'Jawaban UTS' , 'Jawaban UAS' , 'Kunci UTS' , 'Kunci UAS' , 'Tugas' , 'Project' , 'Laporan' ];
+    $jenis_data = [ 'Soal UTS' => 'Soal UTS' , 'Soal UAS' => 'Soal UAS' , 'Jawaban UTS' => 'Jawaban UTS' , 'Jawaban UAS' => 'Jawaban UAS' , 'Kunci UTS' => 'Kunci UTS' , 'Kunci UAS' => 'Kunci UAS' , 'Tugas' => 'Tugas' , 'Project' => 'Project' , 'Laporan' => 'Laporan' ];
 	echo $form->field($model, 'jenis_data')->widget(Select2::classname(), [
         'data' => $jenis_data,
         'options' => [
@@ -25,6 +25,8 @@ use kartik\widgets\Select2;
     ]);?>
 
     <?= $form->field($model, 'file')->textInput(['maxlength' => true]) ?>
+	
+	<?= $form->field($model, 'id_ref_mata_kuliah')->textInput(['maxlength' => true , 'value' => $jk ]) ?>
 
 
     <div class="form-group">

@@ -5,6 +5,7 @@ namespace backend\models\searchs;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Bap as BapModel;
+use Yii;
 
 /**
  * RefMataKuliah represents the model behind the search form of `backend\models\RefMataKuliah`.
@@ -40,7 +41,8 @@ class Bap extends BapModel
      */
     public function search($params)
     {
-        $query = BapModel::find()->where(["status"=>1]);
+		$jk = Yii::$app->getRequest()->getQueryParam('jk');
+        $query = BapModel::find()->where(["id_ref_mata_kuliah"=>$jk]);
 
         // add conditions that should always apply here
 

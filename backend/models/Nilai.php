@@ -51,11 +51,11 @@ class Nilai extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jenis_nilai', 'angka'], 'required', 'message' => '{attribute} tidak boleh kosong'],
+            [['id_ref_mata_kuliah', 'jenis_nilai', 'angka'], 'required', 'message' => '{attribute} tidak boleh kosong'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['jenis_nilai'], 'string', 'max' => 64],
-            [['angka'], 'float', 'max' => 64],
+            [['angka'], 'integer', 'max' => 64],
             [['created_user', 'updated_user'], 'string', 'max' => 255],
         ];
     }
@@ -67,6 +67,7 @@ class Nilai extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+			'id_ref_mata_kuliah' => 'Id Ref Makul',
             'jenis_nilai' => 'Jenis Nilai',
             'nilai' => 'Nilai',
             'status' => 'Status',

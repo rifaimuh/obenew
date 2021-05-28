@@ -21,7 +21,7 @@ class UploadFileImporter extends Model
     public function rules()
     {
         return [
-            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'xlsx', 'maxSize' => 3072000],
+            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, jpg'],
         ];
     }
 
@@ -31,7 +31,16 @@ class UploadFileImporter extends Model
     public function attributeLabels()
     {
         return [
-            'file' => 'Pastikan telah menggunakan file template yang sesuai.',
+            'file' => 'Upload File Pdf untuk Berita Acara Perkuliahan',
         ];
     }
+	public function upload() {
+         if ($this->validate()) {
+            $this->file->saveAs('../uploads/file_bap/' . $this->file->baseName . '.' .
+               $this->file->extension);
+            return true;
+         } else {
+            return false;
+         }
+      }
 }

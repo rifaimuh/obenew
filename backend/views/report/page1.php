@@ -29,16 +29,88 @@ $_col_width = 10;
 ?>
 
 <body style="background: url('images/background_skpi.png');background-image-resolution: from-image;">
+<?php  
+                $tgl = ucfirst($data['setupPrint']['tgl_lulus']);
+                $cc = strlen($tgl);
+                for ($x = 3; $x <= $cc; $x++) {
+                    if (substr($tgl,$x,2) == "20"){
+                        $bln = substr($tgl,3,$x-4);
+                        $thn = substr($tgl,$x-1);
+                    }
+                }
+                if($bln == "January") $bln = "Januari";
+                if($bln == "February") $bln = "Februari";
+				if($bln == "March") $bln = "Maret";
+				if($bln == "April") $bln = "April";
+				if($bln == "May") $bln = "Mei";
+				if($bln == "June") $bln = "Juni";
+				if($bln == "July") $bln = "Juli";
+				if($bln == "August") $bln = "Agustus";
+				if($bln == "September") $bln = "September";
+				if($bln == "October") $bln = "Oktober";
+				if($bln == "November") $bln = "November";
+				if($bln == "December") $bln = "Desember";
+                $tgle =  substr($tgl,0,3) . $bln . $thn;
+            ?> 
+<?php  
+                $tglm = ucfirst($data['setupPrint']['tgl_masuk']);
+                $ccm = strlen($tglm);
+                for ($xm = 3; $xm <= $ccm; $xm++) {
+                    if (substr($tglm,$xm,2) == "20"){
+                        $blnm = substr($tglm,3,$xm-4);
+                        $thnm = substr($tglm,$xm-1);
+                    }
+                }
+                if($blnm == "January") $blnm = "Januari";
+                if($blnm == "February") $blnm = "Februari";
+				if($blnm == "March") $blnm = "Maret";
+				if($blnm == "April") $blnm = "April";
+				if($blnm == "May") $blnm = "Mei";
+				if($blnm == "June") $blnm = "Juni";
+				if($blnm == "July") $blnm = "Juli";
+				if($blnm == "August") $blnm = "Agustus";
+				if($blnm == "September") $blnm = "September";
+				if($blnm == "October") $blnm = "Oktober";
+				if($blnm == "November") $blnm = "November";
+				if($blnm == "December") $blnm = "Desember";
+                $tglem =  substr($tglm,0,3) . $blnm . $thnm;
+            ?> 
+<?php  
+                $tglttl = ucfirst($data['setupPrint']['ttl']);
+                $ccttl = strlen($tglttl);
+                for ($xttl = 0; $xttl <= $ccttl; $xttl++) {
+                    if(substr($tglttl,$xttl,1)==","){
+                      $tml =  substr($tglttl,0,$xttl);
+                      $xd = $xttl+4;
+                      $tl = (int)substr($tglttl,$xttl+1) ;
+                      $blnttl = substr($tglttl,$xd,$ccttl-5-$xd);
+                      $thnttl =  (int)substr($tglttl,$ccttl-5);
+                    }
+                  }
+                if($blnttl == " Januari") $blnttl = " January";
+                if($blnttl == " Februari") $blnttl = " February";
+		if($blnttl == " Maret") $blnttl = " March";
+		if($blnttl == " April") $blnttl = " April";
+		if($blnttl == " Mei") $blnttl = " May";
+		if($blnttl == " Juni") $blnttl = " June";
+		if($blnttl == " Juli") $blnttl = " July";
+		if($blnttl == " Agustus") $blnttl = " August";
+		if($blnttl == " September") $blnttl = " September";
+		if($blnttl == " Oktober") $blnttl = " October";
+		if($blnttl == " November") $blnttl = " November";
+		if($blnttl == " Desember") $blnttl = " December";
+
+                $tglettl =  $tl . $blnttl . $thnttl;
+            ?>
     <div class="row">
         <table class="table">
             <tr>
-                <td style="background-color:transparent;width:68%">
+                <td style="background-color:transparent;width:66%">
                     <p style="font-size:15px">PROGRAM STUDI <?= strtoupper($data['setupAplikasi']->prodi_id) ?></p>
-                    <i style="font-size:13px;color:grey"> Departemen of <?= ucfirst($data['setupAplikasi']->prodi_en) ?> </i>
+                    <i style="font-size:13px;color:grey"> Departement of <?= ucfirst($data['setupAplikasi']->prodi_en) ?> </i>
                 </td>
                 <td rowspan="2">
-                    <p style="font-size:15px;">Nomor: &nbsp;&nbsp;&nbsp;/UN27.8/PP/2020</p>
-                    <i style="font-size:13px;color:grey">Number</i>
+                    <p style="font-size:15px;">Nomor: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/UN27.8/PP/<?= date("Y", strtotime(ucfirst($data['setupPrint']['tgl_lulus'])))?></p>                    <i style="font-size:13px;color:grey">Number</i>
                 </td>
             </tr>
             <tr>
@@ -87,7 +159,7 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        TANGGAL MASUK
+                        &nbsp;&nbsp;TANGGAL MASUK
                         <i style="font-size:13px;color:grey">/ Date of Entry</i>
                     </p>
                 </td>
@@ -100,7 +172,7 @@ $_col_width = 10;
                 </td>
                 <td style="width: <?= $isi ?>%;"></td>
                 <td>
-                    <p style="font-size:<?= $_isi_font ?>px;"> <?= ucfirst($data['setupPrint']['tgl_masuk']) ?></p>
+                    <p style="font-size:<?= $_isi_font ?>px;"> &nbsp;&nbsp;<?= $tglem ?> <i style="font-size:<?= $_isi_font ?>px;color:grey">/ <?= date("F d, Y", strtotime(ucfirst($data['setupPrint']['tgl_masuk'])))?></i> </p>
                 </td>
             </tr>
             <tr>
@@ -113,7 +185,7 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        TANGGAL LULUS
+                        &nbsp;&nbsp;TANGGAL LULUS
                         <i style="font-size:13px;color:grey">/ Date of Completion</i>
                     </p>
                 </td>
@@ -126,20 +198,20 @@ $_col_width = 10;
                 </td>
                 <td style="width: <?= $isi ?>%;"></td>
                 <td>
-                    <p style="font-size:<?= $_isi_font ?>px;"> <?= ucfirst($data['setupPrint']['tgl_lulus']) ?> </p>
+                    <p style="font-size:<?= $_isi_font ?>px;"> &nbsp;&nbsp;<?= $tgle ?> <i style="font-size:<?= $_isi_font ?>px;color:grey">/ <?= date("F d, Y", strtotime(ucfirst($data['setupPrint']['tgl_lulus'])))?></i> </p>
                 </td>
             </tr>
             <tr>
                 <td style="width: <?= $head_width ?>%;height:35px"></td>
                 <td colspan="2">
                     <p style="font-size:13px">
-                        TEMPAT DAN TANGGAL LAHIR
-                        <i style="font-size:13px;color:grey"> / Place and Date of Birth</i>
+                        TEMPAT, TANGGAL LAHIR
+                        <i style="font-size:13px;color:grey"> / Place, Date of Birth</i>
                     </p>
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        GELAR
+                        &nbsp;&nbsp;GELAR
                         <i style="font-size:13px;color:grey">/ Tittle</i>
                     </p>
                 </td>
@@ -147,12 +219,12 @@ $_col_width = 10;
             <tr>
                 <td style="width: <?= $head_width ?>%;height: 75px;"></td>
                 <td style="width: <?= $isi ?>%;"></td>
-                <td style="vertical-align:top">
-                    <p style="font-size:<?= $_isi_font ?>px;"> <?= ucfirst($data['setupPrint']['ttl']) ?> </p>
+                <td style="vertical-align:top; width: 45%;">
+                    <p style="font-size:<?= $_isi_font ?>px;"> <?= ucfirst($data['setupPrint']['ttl']) ?> <i style="font-size:<?= $_isi_font ?>px;color:grey">/ <?=$tml . ", " . date("F d, Y", strtotime($tglettl)) ?></i>  </p>
                 </td>
                 <td style="width: <?= $isi ?>%;"></td>
                 <td style="vertical-align:top">
-                    <p style="font-size:<?= $_isi_font ?>px;"> Sarjana Teknik (S.T.) <i style="font-size:<?= $_isi_font ?>px;color:grey">/ Bachelor of Engineering</i></p>
+                    <p style="font-size:<?= $_isi_font ?>px;"> &nbsp;&nbsp;Sarjana Teknik (S. T.) <i style="font-size:<?= $_isi_font ?>px;color:grey">/ Bachelor of Engineering</i></p>
                 </td>
             </tr>
 
@@ -175,7 +247,7 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        TOTAL SKS
+                        &nbsp;&nbsp;TOTAL SKS
                         <i style="font-size:13px;color:grey">/ Total of Credit Semester Unit</i>
                     </p>
                 </td>
@@ -192,7 +264,7 @@ $_col_width = 10;
                 <td style="width: <?= $isi ?>%;"></td>
                 <td>
                     <p style="font-size:<?= $_isi_font ?>px;">
-                        <?= $data['setupPrint']['total_sks'] ?> sks
+                        &nbsp;&nbsp;<?= $data['setupPrint']['total_sks'] ?> sks
                         <i style="font-size:<?= $_isi_font ?>px;color:grey">/<?= $data['setupPrint']['total_sks'] ?> credits</i>
                     </p>
                 </td>
@@ -207,7 +279,7 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        DURASI STUDI REGULER
+                        &nbsp;&nbsp;DURASI STUDI REGULER
                         <i style="font-size:13px;color:grey">/ Regular Duration of Study</i>
                     </p>
                 </td>
@@ -224,7 +296,7 @@ $_col_width = 10;
                 <td style="width: <?= $isi ?>%;"></td>
                 <td>
                     <p style="font-size:<?= $_isi_font ?>px;">
-                        <?= $data['semester'] ?> Semester <?= $data['total_bulan'] ?> Bulan
+                        &nbsp;&nbsp;<?= $data['semester'] ?> Semester <?= $data['total_bulan'] ?> Bulan
                         <i style="font-size:<?= $_isi_font ?>px;color:grey">/<?= $data['semester'] ?> Semester <?= $data['total_bulan'] ?> Month</i>
                     </p>
                 </td>
@@ -239,7 +311,7 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        SISTEM PENILAIAN
+                        &nbsp;&nbsp;SISTEM PENILAIAN
                         <i style="font-size:13px;color:grey">/ Grading System</i>
                     </p>
                 </td>
@@ -255,7 +327,7 @@ $_col_width = 10;
                 </td>
                 <td style="width: <?= $isi ?>%;"></td>
                 <td style="vertical-align: top;">
-                    <p style="font-size:<?= $_isi_font ?>px;"> A=4; A-=3.7; B+=3.3; B=3; C+=2.7; C=2; D=1; E=0 </p>
+                    <p style="font-size:<?= $_isi_font ?>px;"> &nbsp;&nbsp;A=4; A-=3.7; B+=3.3; B=3; C+=2.7; C=2; D=1; E=0 </p>
                 </td>
             </tr>
             <tr>
@@ -268,8 +340,8 @@ $_col_width = 10;
                 </td>
                 <td colspan="2" style="width: <?= $_col_width ?>%;">
                     <p style="font-size:13px">
-                        PERSYARATAN PENERIMAAN <br>
-                        <i style="font-size:13px;color:grey">Entry Requirements</i>
+                        &nbsp;&nbsp;PERSYARATAN PENERIMAAN <br>
+                        <i style="font-size:13px;color:grey">&nbsp;&nbsp;Entry Requirements</i>
                     </p>
                 </td>
             </tr>
@@ -285,18 +357,25 @@ $_col_width = 10;
                 <td style="width: <?= $isi ?>%;"></td>
                 <td style="vertical-align: top;">
                     <p style="font-size:<?= $_isi_font ?>px;">
-                        Lulus Pendidikan Menengah Atas/Sederajat <br>
-                        <i style="font-size:<?= $_isi_font ?>px;color:grey">Graduate from High School or Similar Education Level</i>
+                        &nbsp;&nbsp;Lulus Pendidikan Menengah Atas/Sederajat <br>
+                        <i style="font-size:<?= $_isi_font ?>px;color:grey">&nbsp;&nbsp;Graduate from High School or Similar Education Level</i>
                     </p>
                 </td>
             </tr>
         </table>
     </div>
-    <p style="height: 50px;">
+    <p style="height: 52px;">
     </p>
-    <p style="text-align: right;font-size:10px;color:white">
-        HALAMAN 1 DARI 3 <i style="font-size:10px;color:white"> / PAGE 1 OF 3</i>
-    </p>
-</body>
-
+    <div style="position: fixed;">
+        <div style="float: left; width: 60%;">
+            <p style="text-align: left;font-size:10px;color:white">
+                <?= strtoupper($data['setupPrint']['nama']) ?> - <?= strtoupper($data['setupPrint']['nim']) ?>
+            </p>
+        </div>
+        <div style="float: right; width: 23%;">
+            <p style="text-align: right;font-size:10px;color:white">
+                &nbsp;&nbsp;HALAMAN 1 DARI 3 <i style="font-size:10px;color:white"> / PAGE 1 OF 3</i>
+            </p>
+        </div>
+    </div></body>
 </html>

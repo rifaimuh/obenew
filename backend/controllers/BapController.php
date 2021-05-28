@@ -48,6 +48,12 @@ class BapController extends Controller
     {
         $searchModel = new BapSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+        if (!(Yii::$app->getRequest()->getQueryParam('jk'))) {
+            return $this->redirect([
+                '/mata-kuliah-tayang',
+            ]);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

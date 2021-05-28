@@ -70,12 +70,20 @@ $font_nilai = 13;
         }
         ?>
     </table>
-    <p style="height: 120px;">
+    <p style="height: 254px;">
     </p>
-    <p style="text-align: right;font-size:10px;color:white">
-        HALAMAN 2 DARI 3 <i style="font-size:10px;color:white"> / PAGE 2 OF 3</i>
-    </p>
-    <pagebreak />
+    <div style="position: fixed;">
+        <div style="float: left; width: 60%;">
+            <p style="text-align: left;font-size:10px;color:white">
+                <?= strtoupper($data['setupPrint']['nama']) ?> - <?= strtoupper($data['setupPrint']['nim']) ?>
+            </p>
+        </div>
+        <div style="float: right; width: 23%;">
+            <p style="text-align: right;font-size:10px;color:white">
+                &nbsp;&nbsp;HALAMAN 2 DARI 3 <i style="font-size:10px;color:white"> / PAGE 2 OF 3</i>
+            </p>
+        </div>
+    </div>    <pagebreak />
     <table class="table">
         <!-- Nomer 3.2 -->
         <tr>
@@ -225,10 +233,32 @@ $font_nilai = 13;
                 </p>
             </td>
             <td>
+            <?php  
+                $tgl = ucfirst($data['setupPrint']['tgl_lulus']);
+                $cc = strlen($tgl);
+                for ($x = 3; $x <= $cc; $x++) {
+                    if (substr($tgl,$x,2) == "20"){
+                        $bln = substr($tgl,3,$x-4);
+                        $thn = substr($tgl,$x-1);
+                    }
+                }
+                if($bln == "January") $bln = "Januari";
+                if($bln == "February") $bln = "Februari";
+				if($bln == "March") $bln = "Maret";
+				if($bln == "April") $bln = "April";
+				if($bln == "May") $bln = "Mei";
+				if($bln == "June") $bln = "Juni";
+				if($bln == "July") $bln = "Juli";
+				if($bln == "August") $bln = "Agustus";
+				if($bln == "September") $bln = "September";
+				if($bln == "October") $bln = "Oktober";
+				if($bln == "November") $bln = "November";
+				if($bln == "December") $bln = "Desember";
+                $tgle =  substr($tgl,0,3) . $bln . $thn;            ?> 
                 <p style="font-size: <?= $font_nilai ?>px;">
-                    SURAKARTA, <?= ucfirst($data['setupPrint']['tgl_lulus']) ?> <br>
+                    SURAKARTA, <?= $tgle ?> <br>
                     <!-- SURAKARTA, <-?= strtoupper(date("d F yy")) ?> <br> -->
-                    <i style="font-size:<?= $font_nilai ?>px;color:grey">Surakarta, <?= date("F d, yy", strtotime(ucfirst($data['setupPrint']['tgl_lulus']))) ?></i> <br><br>
+                    <i style="font-size:<?= $font_nilai ?>px;color:grey">Surakarta, <?= date("F d, Y", strtotime(ucfirst($data['setupPrint']['tgl_lulus']))) ?></i> <br><br>
                     DEKAN FAKULTAS TEKNIK <br>
                     <i style="font-size:<?= $font_nilai ?>px;color:grey">Dean of Engineering Faculty</i> <br><br><br><br><br>
 
@@ -239,11 +269,19 @@ $font_nilai = 13;
             </td>
         </tr>
     </table>
-    <p style="height: 30px;">
+    <p style="height: 28px;">
     </p>
-    <p style="text-align: right;font-size:10px;color:white">
-        HALAMAN 3 DARI 3 <i style="font-size:10px;color:white"> / PAGE 3 OF 3</i>
-    </p>
+    <div style="position: fixed;">
+        <div style="float: left; width: 60%;">
+            <p style="text-align: left;font-size:10px;color:white">
+                <?= strtoupper($data['setupPrint']['nama']) ?> - <?= strtoupper($data['setupPrint']['nim']) ?>
+            </p>
+        </div>
+        <div style="float: right; width: 23%;">
+            <p style="text-align: right;font-size:10px;color:white">
+                &nbsp;&nbsp;HALAMAN 3 DARI 3 <i style="font-size:10px;color:white"> / PAGE 3 OF 3</i>
+            </p>
+        </div>
+    </div>
 </body>
-
 </html>

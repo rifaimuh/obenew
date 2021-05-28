@@ -51,8 +51,8 @@ class Bap extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bahan_ajar', 'link'], 'required', 'message' => '{attribute} tidak boleh kosong'],
-            [['status'], 'integer'],
+            [['id_ref_mata_kuliah', 'bahan_ajar', 'link', 'id_ref_mata_kuliah'], 'required', 'message' => '{attribute} tidak boleh kosong'],
+            [['status', 'id_ref_mata_kuliah'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['bahan_ajar'], 'string', 'max' => 500],
             [['link'], 'string', 'max' => 500],
@@ -67,6 +67,7 @@ class Bap extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+			'id_ref_mata_kuliah' => 'Id Ref Makul',
             'bahan_ajar' => 'Bahan Ajar',
             'link' => 'Link',
             'status' => 'Status',
@@ -75,6 +76,11 @@ class Bap extends \yii\db\ActiveRecord
             'created_user' => 'Created User',
             'updated_user' => 'Updated User',
         ];
+    }
+	
+	public function getMataKuliah()
+    {
+        return $this->hasOne(MataKuliah::className(), ['id' => 'id_mata_kuliah']);
     }
 
     /**

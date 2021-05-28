@@ -51,7 +51,7 @@ class Evaluasi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evaluasi', 'saran'], 'required', 'message' => '{attribute} tidak boleh kosong'],
+            [['id_ref_mata_kuliah', 'evaluasi', 'saran'], 'required', 'message' => '{attribute} tidak boleh kosong'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['evaluasi'], 'string', 'max' => 500],
@@ -67,6 +67,7 @@ class Evaluasi extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+			'id_ref_mata_kuliah' => 'Id Ref Makul',
             'evaluasi' => 'Evaluasi',
             'saran' => 'Saran',
             'status' => 'Status',

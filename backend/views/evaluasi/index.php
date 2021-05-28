@@ -11,6 +11,7 @@ use kartik\grid\GridView;
 
 $this->title = 'Evaluasi';
 $this->params['breadcrumbs'][] = $this->title;
+$jk = Yii::$app->getRequest()->getQueryParam('jk');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -21,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if (Yii::$app->assign->is(["administrator"])) {
         ?>
             <p align="right">
-                <?= Html::a('Tambah Data', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Tambah Data', ['create','jk' => $jk ], ['class' => 'btn btn-success']) ?>
             </p>
         <?php
         }
@@ -37,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				 ],
 
                 // 'id',
-                'Evaluasi',
-                'Saran',
+                'evaluasi',
+                'saran',
                 //'File',
 				
                 // 'status',

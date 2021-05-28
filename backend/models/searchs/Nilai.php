@@ -5,6 +5,7 @@ namespace backend\models\searchs;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Nilai as NilaiModel;
+use Yii;
 
 /**
  * RefMataKuliah represents the model behind the search form of `backend\models\RefMataKuliah`.
@@ -40,7 +41,8 @@ class Nilai extends NilaiModel
      */
     public function search($params)
     {
-        $query = NilaiModel::find()->where(["status"=>1]);
+		$jk = Yii::$app->getRequest()->getQueryParam('jk');
+        $query = NilaiModel::find()->where(["id_ref_mata_kuliah"=>$jk]);
 
         // add conditions that should always apply here
 

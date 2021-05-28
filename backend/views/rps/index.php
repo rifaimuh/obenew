@@ -22,7 +22,7 @@ $urlOf = Url::to(['', 'update' => 0, $update, 'jk' => $jk]);
 
 <div class="import-nilai-index panel panel-default">
     <div class="panel-heading">
-        <h1 class="panel-title"><strong> Kartu Rencana Studi</strong></h1>
+        <h1 class="panel-title"><strong> Rencana Pembelajaran Studi </strong></h1>
     </div>
 
     <div class="panel-body">

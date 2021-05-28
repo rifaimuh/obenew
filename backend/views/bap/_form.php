@@ -9,12 +9,14 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="ref-mata-kuliah-form">
-
+<?php $jk = Yii::$app->getRequest()->getQueryParam('jk');?>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'bahan_ajar')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
+	
+	<?= $form->field($model, 'id_ref_mata_kuliah')->textInput(['maxlength' => true , 'value' => $jk ]) ?>
 
 
     <div class="form-group">

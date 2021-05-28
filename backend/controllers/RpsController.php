@@ -71,7 +71,7 @@ class RpsController extends Controller
     {
         if (!(Yii::$app->getRequest()->getQueryParam('jk'))) {
             return $this->redirect([
-                '/mata-kuliah-tayang',
+                '/ref-mata-kulih',
             ]);
         }
         $model = new UploadFileImporter();
@@ -101,8 +101,8 @@ class RpsController extends Controller
                     $kelas->kelas . '_Tahun_' .
                     $tahun->tahun;
 
-                $path = Yii::getAlias("@backend/uploads/file_krs");
-                $base = "{$path}/{$nama}.xlsx";
+                $path = Yii::getAlias("@backend/uploads/file_rps");
+                $base = "{$path}/{$nama}.pdf";
                 @unlink($base);
                 // echo "<pre>";
                 // print_r($base);
@@ -173,8 +173,8 @@ class RpsController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $jk = Yii::$app->getRequest()->getQueryParam('jk');
 
-        $data = FileUpload::findOne(['id_mata_kuliah_tayang' => $jk, 'jenis' => 'krs']);
-        $file = Yii::getAlias("@backend/uploads/file_krs/{$data->file_name}.xlsx");
+        $data = FileUpload::findOne(['id_ref_mata_kuliah' => $jk]);
+        $file = Yii::getAlias("@backend/uploads/file_rps/{$data->file_name}.pdf");
         if (file_exists($file)) {
             return Yii::$app->response->sendFile(
                 $file,

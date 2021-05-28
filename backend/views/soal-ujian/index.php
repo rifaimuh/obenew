@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 // use yii\grid\GridView;
 use kartik\grid\GridView;
+use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
@@ -11,6 +12,7 @@ use kartik\grid\GridView;
 
 $this->title = 'Soal, Jawaban, dan Kunci Jawaban Ujian';
 $this->params['breadcrumbs'][] = $this->title;
+$jk = Yii::$app->getRequest()->getQueryParam('jk');
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -21,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if (Yii::$app->assign->is(["administrator"])) {
         ?>
             <p align="right">
-                <?= Html::a('Tambah Data', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Tambah Data', ['create' ,'jk' => $jk ], ['class' => 'btn btn-success']) ?>
             </p>
         <?php
         }
@@ -37,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				 ],
 
                 // 'id',
-                'Jenis Data',
-                'File',
+                'jenis_data',
+                'file',
                 //'File',
 				
                 // 'status',

@@ -3,11 +3,11 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\MataKuliahTayang;
+use backend\models\MonevPemb;
 use backend\models\RefKelas;
 use backend\models\RefMataKuliah;
 use backend\models\RefTahunAjaran;
-use backend\models\searchs\MataKuliahTayang as MataKuliahTayangSearch;
+use backend\models\searchs\MonevPemb as MonevPembSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -51,7 +51,7 @@ class MonevPembController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new MataKuliahTayangSearch();
+        $searchModel = new MonevPembSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -82,11 +82,11 @@ class MonevPembController extends Controller
      */
     public function actionCreate()
     {
-        $model = new MataKuliahTayang();
+        $model = new MonevPemb();
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $cek = MataKuliahTayang::findOne([
+            $cek = MonevPemb::findOne([
                 'id_tahun_ajaran'    => $model->id_tahun_ajaran,
                 'semester'           => $model->semester,
                 'id_ref_mata_kuliah' => $model->id_ref_mata_kuliah,
@@ -135,7 +135,7 @@ class MonevPembController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $cek = MataKuliahTayang::findOne([
+            $cek = MonevPemb::findOne([
                 'id_tahun_ajaran'    => $model->id_tahun_ajaran,
                 'semester'           => $model->semester,
                 'id_ref_mata_kuliah' => $model->id_ref_mata_kuliah,
@@ -195,12 +195,12 @@ class MonevPembController extends Controller
     public function actionFileNilai()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $model    = new MataKuliahTayang();
+        $model    = new MonevPemb();
         $data['tahun_ajaran'] = ArrayHelper::map(RefTahunAjaran::find()->all(), 'id', 'tahun');
         $data['kelas']        = ArrayHelper::map(RefKelas::find()->all(), 'id', 'kelas');
         $data['mata_kuliah']  = ArrayHelper::map(RefMataKuliah::find()->all(), 'id', 'nama');
 
-        $query = MataKuliahTayang::find()
+        $query = MonevPemb::find()
             ->joinWith("refMataKuliah")
             ->all();
         $data['mk_tayang']  = ArrayHelper::map($query, 'id', 'refMataKuliah.nama');
@@ -243,7 +243,7 @@ class MonevPembController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = MataKuliahTayang::findOne($id)) !== null) {
+        if (($model = MonevPemb::findOne($id)) !== null) {
             return $model;
         }
 

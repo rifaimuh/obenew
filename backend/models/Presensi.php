@@ -30,7 +30,7 @@ class Presensi extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'krs';
+        return 'presensi';
     }
 
     public function behaviors()
@@ -52,12 +52,10 @@ class Presensi extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['id', 'id_ref_mahasiswa', 'id_mata_kuliah_tayang', 'status'], 'integer'],
+            [['id', 'id_ref_mata_kuliah', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_user', 'updated_user'], 'string', 'max' => 255],
             [['id'], 'unique'],
-            [['id_ref_mahasiswa'], 'exist', 'skipOnError' => true, 'targetClass' => RefMahasiswa::className(), 'targetAttribute' => ['id_ref_mahasiswa' => 'id']],
-            [['id_mata_kuliah_tayang'], 'exist', 'skipOnError' => true, 'targetClass' => MataKuliahTayang::className(), 'targetAttribute' => ['id_mata_kuliah_tayang' => 'id']],
         ];
     }
 
@@ -68,8 +66,8 @@ class Presensi extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_ref_mahasiswa' => 'Mahasiswa',
-            'id_mata_kuliah_tayang' => 'Mata Kuliah Tayang',
+            'id_ref_mata_kuliah' => 'Mata Kuliah',
+			'file_presensi' => 'File Presensi',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -93,7 +91,7 @@ class Presensi extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMataKuliahTayang()
+    /*public function getMataKuliahTayang()
     {
         return $this->hasOne(MataKuliahTayang::className(), ['id' => 'id_mata_kuliah_tayang']);
     }
@@ -108,5 +106,5 @@ class Presensi extends \yii\db\ActiveRecord
     {
         return $this->hasMany(RefCpmk::className(), ['id' => 'id_ref_cpmk'])
         ->viaTable(CapaianMahasiswa::tableName(), ['id_ref_mahasiswa' => 'id_ref_mahasiswa']);
-    }
+    }*/
 }

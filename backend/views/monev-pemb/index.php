@@ -7,6 +7,8 @@ use backend\models\Krs;
 use backend\models\Bap;
 use backend\models\Presensi;
 use backend\models\SoalUjian;
+use app\models\FileDatabase;
+use app\models\FileBap;
 use backend\models\Nilai;
 use backend\models\Evaluasi;
 use backend\models\RefCpmk;
@@ -95,10 +97,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'visible'  => !Yii::$app->assign->is(["dosen", "admin dosen"]),
                     'buttons'  => [
                         'RPS' => function ($url, $model, $key) {
-                            if (Rps::findOne(['id_mata_kuliah_tayang' => $model->id])) {
+                            if (FileDatabase::findOne(['id_mata_kuliah_tayang' => $model->id])) {
                                 $rps = Html::a(
                                     '<span> RPS</span>',
-                                    ['/rps', 'jk' => $model->id],
+                                    ['/site/upload-image', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
@@ -106,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             } else {
                                 $rps = Html::a(
                                     '<i> RPS</i>',
-                                    ['/rps', 'jk' => $model->id],
+                                    ['/site/upload-image', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
@@ -117,18 +119,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>";
                         },
 						 'Presensi' => function ($url, $model, $key) {
-                            if (Presensi::findOne(['id_mata_kuliah_tayang' => $model->id])) {
+                            if (FileBap::findOne(['id_mata_kuliah_tayang' => $model->id])) {
                                 $presensi = Html::a(
-                                    '<span> Presensi</span>',
-                                    ['/presensi', 'jk' => $model->id],
+                                    '<span> BAP</span>',
+                                    ['/site/upload-bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
                                 );
                             } else {
                                 $presensi = Html::a(
-                                    '<i> Presensi</i>',
-                                    ['/presensi', 'jk' => $model->id],
+                                    '<i> BAP</i>',
+                                    ['/site/upload-bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
@@ -139,9 +141,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>";
                         },
 						 'BAP' => function ($url, $model, $key) {
-                            if (Bap::findOne(['id' => $model->id])) {
+                            if (Bap::findOne(['id_ref_mata_kuliah' => $model->id])) {
                                 $bap = Html::a(
-                                    '<span> BAP</span>',
+                                    '<span> Bahan Ajar</span>',
                                     ['/bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
@@ -149,7 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 );
                             } else {
                                 $bap = Html::a(
-                                    '<i> BAP</i>',
+                                    '<i> Bahan Ajar</i>',
                                     ['/bap', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
@@ -161,10 +163,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>";
                         },
 						  'Ujian' => function ($url, $model, $key) {
-                            if (SoalUjian::findOne(['id' => $model->id])) {
+                            if (SoalUjian::findOne(['id_ref_mata_kuliah' => $model->id])) {
                                 $soalujian = Html::a(
                                     '<span> Soal Ujian</span>',
-                                    ['/soal-ujian', 'jk' => $model->id],
+                                    ['/site/upload-soal', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-primary',
                                     ]
@@ -172,7 +174,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             } else {
                                 $soalujian = Html::a(
                                     '<i> Soal Ujian</i>',
-                                    ['/soal-ujian', 'jk' => $model->id],
+                                    ['/site/upload-soal', 'jk' => $model->id],
                                     [
                                         'class' => 'btn-sm btn btn-warning',
                                     ]
@@ -183,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>";
                         },
 						 'Nilai' => function ($url, $model, $key) {
-                            if (Nilai::findOne(['id' => $model->id])) {
+                            if (Nilai::findOne(['id_ref_mata_kuliah' => $model->id])) {
                                 $nilai = Html::a(
                                     '<span> Nilai</span>',
                                     ['/nilai', 'jk' => $model->id],
@@ -205,7 +207,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>";
                         },
 						 'Evaluasi' => function ($url, $model, $key) {
-                            if (Evaluasi::findOne(['id' => $model->id])) {
+                            if (Evaluasi::findOne(['id_ref_mata_kuliah' => $model->id])) {
                                 $evaluasi = Html::a(
                                     '<span> Evaluasi</span>',
                                     ['/evaluasi', 'jk' => $model->id],

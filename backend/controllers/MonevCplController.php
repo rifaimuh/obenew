@@ -109,7 +109,7 @@ class MonevCplController extends Controller
         if (!empty($id_mahasiswa)) {
             $cpl = RefCpl::find()->where(['status' => 1])->all();
             $total_cpl = count($cpl);
-            for ($i = 1; $i <= $total_cpl; $i++) {
+            /*for ($i = 1; $i <= $total_cpl; $i++) {
                 $individu[$i] = CapaianMahasiswa::find()
                     ->joinWith(
                         [
@@ -124,7 +124,248 @@ class MonevCplController extends Controller
                     ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
                     // ->all();
                     ->average(CapaianMahasiswa::tableName() . '.nilai');
-
+			}*/
+			 //for ($i = 1; $i <= $total_cpl; $i++) {
+                $individu[1] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 1])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 17])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+				
+				 $individu[2] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 2])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 17])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[3] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 3])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 18])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[4] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 4])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 24])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[5] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 5])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 19])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[6] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 6])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 22])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[7] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 7])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 21])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[8] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 8])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 21])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[9] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 9])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 20])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[10] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 10])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 21])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[11] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 11])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 19])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[12] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 12])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 25])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[13] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 13])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 26])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[14] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 14])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 23])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+					
+				 $individu[15] = CapaianMahasiswa::find()
+                    ->joinWith(
+                        [
+                            'refCpmk.' . 'relasiCpmkCpls' => function ($query) {
+                                $query->where([RelasiCpmkCpl::tableName() . '.status' => 1]);
+                            }
+                        ]
+                    )
+                    ->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 15])
+					->orWhere([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => 22])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.id_ref_mahasiswa' => $id_mahasiswa])
+                    ->andWhere([CapaianMahasiswa::tableName() . '.status' => 1])
+                    ->orderBy([RelasiCpmkCpl::tableName() . '.id_ref_cpl' => SORT_ASC])
+                    // ->all();
+                    ->average(CapaianMahasiswa::tableName() . '.nilai');
+			
                 // foreach ($individu as $val) {
                 //     $nilai = $val->nilai;
                 //     foreach ($val['relasiCpmkCpls'] as $value) {
@@ -146,7 +387,7 @@ class MonevCplController extends Controller
                 //         }
                 //     }
                 // }
-            }
+            
             // $row = ksort($bobot_cpl);
             // echo '<pre>';
             // print_r($bobot_cpl);

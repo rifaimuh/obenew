@@ -14,13 +14,22 @@ use common\models\LoginForm;
 use backend\models\SignupForm;
 use backend\models\User as ModelsUser;
 use common\models\User;
-
+use app\models\UploadImageForm;
+use app\models\UploadBapForm;
+use app\models\UploadSoalForm;
+use app\models\FileDatabase;
+use app\models\FileBap;
+use app\models\FileSoal;
+use app\models\MataKuliahTayang;
+use yii\web\UploadedFile;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
+use backend\controllers\SoalUjian;
+use backend\models\SoalUjian as SoalUjianModel;
 
 /**
  * Site controller
@@ -57,6 +66,149 @@ class SiteController extends Controller
             ],
         ];
     }
+
+    public function actionUploadImage() {
+		$jk = Yii::$app->getRequest()->getQueryParam('jk');
+        $model = new UploadImageForm();
+        if (Yii::$app->request->isPost) {
+           $model->image = UploadedFile::getInstance($model, 'image');
+           if ($model->upload()) {
+			   
+			   $data = new FileDatabase();
+			   $data->id_mata_kuliah_tayang = $jk; //$decrypt;
+			   $data->base_name = $model->image->baseName; //$model->file[0]->baseName;
+			   $data->file_name = $model->image->baseName; //$nama;
+			   $data->status = 1;
+			   /*$data->created_at = '2020-07-05 09:45:21';
+			   $data->updated_at = '2021-02-12 12:42:13';*/
+			   $data->created_user = 'administrator';
+			   $data->updated_user = 'administrator';
+			   $data->save();
+			   
+			   /*$nama = 'rps_' .
+               $mata_kuliah->nama . '_' .
+
+                $path = Yii::getAlias("@backend/uploads/file_rps");
+                $base = "{$path}/{$nama}.pdf";
+                @unlink($base);
+                // echo "<pre>";
+                // print_r($base);
+                // exit;
+                $files = $model->file[0]->saveAs($base, FALSE);
+                if ($files) {
+                    $flag = true;
+                    $newData = false;
+                    $data = $exist = UploadImageForm::findOne(['id_mata_kuliah_tayang' => $decrypt]);
+                    if (!$data) {
+                        $newData = true;
+                        $data = new UploadImageForm();
+                    }
+                    if ($update || $newData) {
+                        $data->id_mata_kuliah_tayang = $decrypt;
+                        $data->file_name = $nama;
+                        $data->base_name = $model->file[0]->baseName;
+                        $flag = $flag && $data->save(FALSE);
+                        if ($update && $exist) {
+                        }
+                    }
+                }
+
+			$model->file = null;
+        return $this->render('index', [
+            'model'  => $model,
+            'update' => $update,
+        ]);*/
+              // file is uploaded successfully
+              echo "File successfully uploaded";
+              return;
+           }
+        }
+        return $this->render('upload', ['model' => $model]);
+     }
+	 
+	 public function actionFile () {
+		 $jk = Yii::$app->getRequest()->getQueryParam('jk');
+		 $data = FileDatabase::find()->where(['id_mata_kuliah_tayang'=>$jk])->one();
+		 $file = $data->file_name;
+		 
+		 
+		 $completePath = '../uploads/file_rps/'.$file.'.pdf';
+		 $filename = $file . '.pdf';
+		 return Yii::$app->response->sendFile($completePath , $filename, ['inline'=>true]);
+	 }
+	 
+	 public function actionUploadBap() {
+		$jk = Yii::$app->getRequest()->getQueryParam('jk');
+        $model = new UploadBapForm();
+        if (Yii::$app->request->isPost) {
+           $model->image = UploadedFile::getInstance($model, 'image');
+           if ($model->upload()) {
+			   
+			   $data = new FileBap();
+			   $data->id_mata_kuliah_tayang = $jk; //$decrypt;
+			   $data->base_name = $model->image->baseName; //$model->file[0]->baseName;
+			   $data->file_name = $model->image->baseName; //$nama;
+			   $data->status = 1;
+			   /*$data->created_at = '2020-07-05 09:45:21';
+			   $data->updated_at = '2021-02-12 12:42:13';*/
+			   $data->created_user = 'administrator';
+			   $data->updated_user = 'administrator';
+			   $data->save();
+              // file is uploaded successfully
+              echo "File successfully uploaded";
+              return;
+           }
+        }
+        return $this->render('bap', ['model' => $model]);
+     }
+	 
+	 public function actionFile2 () {
+		 $jk = Yii::$app->getRequest()->getQueryParam('jk');
+		 $data = FileBap::find()->where(['id_mata_kuliah_tayang'=>$jk])->one();
+		 $file = $data->file_name;
+		 
+		 
+		 $completePath = '../uploads/file_bap/'.$file.'.pdf';
+		 $filename = $file . '.pdf';
+		 return Yii::$app->response->sendFile($completePath , $filename, ['inline'=>true]);
+	 }
+	 
+	 public function actionUploadSoal() {
+		$jk = Yii::$app->getRequest()->getQueryParam('jk');
+        $model = new UploadSoalForm();
+		$model2 = new SoalUjianModel();
+        if (Yii::$app->request->isPost) {
+           $model->image = UploadedFile::getInstance($model, 'image');
+           if ($model->upload()) {
+			   $data = new FileSoal();
+			   $data->id_mata_kuliah_tayang = $jk; //$decrypt;
+			   $data->jenis = $model2->jenis_data;
+			   $data->base_name = $model->image->baseName; //$model->file[0]->baseName;
+			   $data->file_name = $model->image->baseName; //$nama;
+			   $data->status = 1;
+			   /*$data->created_at = '2020-07-05 09:45:21';
+			   $data->updated_at = '2021-02-12 12:42:13';*/
+			   $data->created_user = 'administrator';
+			   $data->updated_user = 'administrator';
+			   $data->save();
+              // file is uploaded successfully
+              echo "File successfully uploaded";
+              return;
+           }
+        }
+        return $this->render('soal', ['model' => $model, 'model2' => $model2]);
+     }
+	 
+	 public function actionFile3 () {
+		 $jk = Yii::$app->getRequest()->getQueryParam('jk');
+		 $data = FileSoal::find()->where(['id_mata_kuliah_tayang'=>$jk])->one();
+		 $file = $data->file_name;
+		 
+		 
+		 $completePath = '../uploads/file_soal/'.$file.'.pdf';
+		 $filename = $file . '.pdf';
+		 return Yii::$app->response->sendFile($completePath , $filename, ['inline'=>true]);
+	 }
 
     /**
      * {@inheritdoc}

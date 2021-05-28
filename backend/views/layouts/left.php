@@ -80,7 +80,7 @@ $this->registerCss($css);
                                     ['label' => 'Rumusan CPMK', 'icon' => 'genderless', 'url' => ['/ref-cpmk'],],
 									['label' => 'Relasi CPMK dan CPL', 'icon' => 'genderless', 'url' => ['/relasi-cpmk-cpl'],],
                                     ['label' => 'Matrix Assesment', 'icon' => 'genderless', 'url' => ['#'],],
-									['label' => 'Matriks Konversi Kurikulum', 'icon' => 'genderless', 'url' => ['#'],],
+									['label' => 'Matriks Konversi Kurikulum', 'icon' => 'genderless', 'url' => ['/matriks-konversi'],],
 								]
 							],
                     ['label' => 'Mata Kuliah Tayang', 'icon' => 'black-tie', 'url' => ['/mata-kuliah-tayang']],
@@ -108,7 +108,17 @@ $this->registerCss($css);
                             ],
                         //],
                     //],
-					['label' => 'Evaluasi Kurikulum', 'icon' => 'file', 'url' => ['#']],
+					['label' => 'Evaluasi Kurikulum', 
+					'icon' => 'file', 
+					'url' => ['#'],
+					'items' => [
+                            ['label' => 'Kaji Ulang', 'icon' => 'circle', 'url' => ['/kaji-ulang'],],
+                            ['label' => 'Evaluasi Kinerja', 'icon' => 'circle', 'url' => ['/evaluasi-kinerja'],],
+                            //['label' => 'Tahun Ajaran', 'icon' => 'circle', 'url' => ['/ref-tahun-ajaran'],],
+                            //['label' => 'Kelas', 'icon' => 'circle', 'url' => ['/ref-kelas'],],
+                        ],
+					],
+					
                     /*[
                         'label'   => 'CP Mata Kuliah',
                         'icon'    => 'list-alt',

@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\RefMataKuliah */
 
-$this->title = 'View : '.$model->bahan_ajar;
-$this->params['breadcrumbs'][] = ['label' => 'Bahan Ajar', 'url' => ['index']];
+$this->title = 'View : '.$model->evaluasi;
+$this->params['breadcrumbs'][] = ['label' => 'Evaluasi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -35,8 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= DetailView::widget([
             'model' => $model,
             'attributes' => [
-                'Bahan Ajar',
-                'Link',
+                'evaluasi',
+                'saran',
                 //'sks',
             ],
         ]) ?>

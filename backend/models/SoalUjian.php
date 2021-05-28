@@ -51,7 +51,7 @@ class SoalUjian extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jenis_data', 'file'], 'required', 'message' => '{attribute} tidak boleh kosong'],
+            [['id_ref_mata_kuliah', 'jenis_data', 'file'], 'required', 'message' => '{attribute} tidak boleh kosong'],
             [['status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['jenis_data'], 'string', 'max' => 64],
@@ -67,6 +67,7 @@ class SoalUjian extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+			'id_ref_mata_kuliah' => 'Id Ref Makul',
             'jenis_data' => 'Jenis Data',
             'file' => 'File',
             'status' => 'Status',

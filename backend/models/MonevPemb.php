@@ -29,7 +29,7 @@ use yii\db\Expression;
  * @property RefCpmks $refCpmks
  * @property CapaianMahasiswa $capaianMahasiswa
  */
-class MataKuliahTayang extends \yii\db\ActiveRecord
+class MonevPemb extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -99,6 +99,10 @@ class MataKuliahTayang extends \yii\db\ActiveRecord
         return $this->hasMany(Krs::className(), ['id_mata_kuliah_tayang' => 'id']);
     }
 
+	public function getBap()
+    {
+        return $this->hasMany(Bap::className(), ['id_mata_kuliah_tayang' => 'id']);
+    }
     /**
      * Gets query for [[TahunAjaran]].
      *
